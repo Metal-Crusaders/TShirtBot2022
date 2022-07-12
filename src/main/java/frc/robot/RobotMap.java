@@ -17,17 +17,4 @@ public class RobotMap {
     public static final int rightRear = 4;
     public static final boolean rightRearReverse = false;
 
-    public static final int barrelEncoderA = 0;
-    public static final int barrelEncoderB = 1;
-    public static final boolean barrelRevered = false;
-
-    public static final int barrel = 5;
-    public static final boolean barrelReverse = false;
-
-    public static final int tilt = 6;
-    public static final boolean tiltReverse = false;
-
-    //Pneumatics
-    public static final int PCM = 0;
-    public static final int tshirtSolenoid = 0;
 }

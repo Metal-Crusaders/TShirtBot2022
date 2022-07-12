@@ -9,6 +9,7 @@ import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.commands.DriveTeleop;
 import frc.robot.motor.CimSRX;
 import frc.robot.subsystems.TankDrive;
+import frc.robot.OI;
 
 public class RobotContainer {
 
@@ -18,12 +19,16 @@ public class RobotContainer {
     //Solenoids
     public Solenoid tshirtSolenoid;
 
+    public OI oi;
+
     //Subsystems
     public TankDrive drive;
     //Commands
     public DriveTeleop driveTeleop;
 
     public RobotContainer() {
+
+        oi = new OI();
 
         //Drivetrain
         leftFront = new CimSRX(RobotMap.leftFront, RobotMap.leftFrontReverse);
@@ -35,7 +40,7 @@ public class RobotContainer {
         rightRear.follow(rightFront);
 
         drive = new TankDrive(leftFront, rightFront);
-
+        driveTeleop = new DriveTeleop(drive, oi.getXboxLeftTrigger(), oi.getXboxRightTrigger(), oi.getXboxLeftX());
         configureButtonBindings();
     }
 
