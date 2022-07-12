@@ -1,12 +1,12 @@
 package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
-import frc.robot.motor.CimSRX;
+import frc.robot.motor.CimSPX;
 
 public class TankDrive extends SubsystemBase {
-    private final CimSRX left, right;
+    private final CimSPX left, right;
 
-    public TankDrive(CimSRX left, CimSRX right) {
+    public TankDrive(CimSPX left, CimSPX right) {
         this.left = left;
         this.right = right;
     }

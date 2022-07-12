@@ -4,20 +4,15 @@
 
 package frc.robot;
 
-import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.commands.DriveTeleop;
-import frc.robot.motor.CimSRX;
+import frc.robot.motor.CimSPX;
 import frc.robot.subsystems.TankDrive;
-import frc.robot.OI;
 
 public class RobotContainer {
 
     //Motors
-    public CimSRX leftFront, leftRear, rightFront, rightRear;
-
-    //Solenoids
-    public Solenoid tshirtSolenoid;
+    public CimSPX leftFront, leftRear, rightFront, rightRear;
 
     public OI oi;
 
@@ -31,10 +26,10 @@ public class RobotContainer {
         oi = new OI();
 
         //Drivetrain
-        leftFront = new CimSRX(RobotMap.leftFront, RobotMap.leftFrontReverse);
-        leftRear = new CimSRX(RobotMap.leftRear, RobotMap.leftRearReverse);
-        rightFront = new CimSRX(RobotMap.rightFront, RobotMap.rightFrontReverse);
-        rightRear = new CimSRX(RobotMap.rightRear, RobotMap.rightRearReverse);
+        leftFront = new CimSPX(RobotMap.leftFront, RobotMap.leftFrontReverse);
+        leftRear = new CimSPX(RobotMap.leftRear, RobotMap.leftRearReverse);
+        rightFront = new CimSPX(RobotMap.rightFront, RobotMap.rightFrontReverse);
+        rightRear = new CimSPX(RobotMap.rightRear, RobotMap.rightRearReverse);
 
         leftRear.follow(leftFront);
         rightRear.follow(rightFront);
