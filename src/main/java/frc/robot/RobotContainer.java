@@ -6,13 +6,13 @@ package frc.robot;
 
 import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.commands.DriveTeleop;
-import frc.robot.motor.CimSPX;
+import frc.robot.motor.VictorSPX;
 import frc.robot.subsystems.TankDrive;
 
 public class RobotContainer {
 
     //Motors
-    public CimSPX leftFront, leftRear, rightFront, rightRear;
+    public VictorSPX leftFront, leftRear, rightFront, rightRear;
 
     public OI oi;
 
@@ -26,10 +26,10 @@ public class RobotContainer {
         oi = new OI();
 
         //Drivetrain
-        leftFront = new CimSPX(RobotMap.leftFront, RobotMap.leftFrontReverse);
-        leftRear = new CimSPX(RobotMap.leftRear, RobotMap.leftRearReverse);
-        rightFront = new CimSPX(RobotMap.rightFront, RobotMap.rightFrontReverse);
-        rightRear = new CimSPX(RobotMap.rightRear, RobotMap.rightRearReverse);
+        leftFront = new VictorSPX(RobotMap.leftFront, RobotMap.leftFrontReverse);
+        leftRear = new VictorSPX(RobotMap.leftRear, RobotMap.leftRearReverse);
+        rightFront = new VictorSPX(RobotMap.rightFront, RobotMap.rightFrontReverse);
+        rightRear = new VictorSPX(RobotMap.rightRear, RobotMap.rightRearReverse);
 
         leftRear.follow(leftFront);
         rightRear.follow(rightFront);

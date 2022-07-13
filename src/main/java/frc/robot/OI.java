@@ -19,7 +19,11 @@ public class OI {
     }
 
     public double getXboxRightY() {
-        return -this.xbox.getRightY();
+        return this.xbox.getRightY();
+    }
+
+    public double getXboxRightX() {
+        return this.xbox.getRightX();
     }
 
     public double getXboxLeftTrigger() {

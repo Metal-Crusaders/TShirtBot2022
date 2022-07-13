@@ -8,7 +8,7 @@ public class RobotMap {
     public static final int leftFront = 1;
     public static final boolean leftFrontReverse = false;
 
-    public static final int leftRear = 0;
+    public static final int leftRear = 4;
     public static final boolean leftRearReverse = false;
 
     public static final int rightFront = 3;
