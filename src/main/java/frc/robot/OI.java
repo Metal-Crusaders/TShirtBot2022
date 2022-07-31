@@ -4,6 +4,9 @@ import edu.wpi.first.wpilibj.XboxController;
 
 public class OI {
 
+    public static int XBOX_A = 0;
+    public static int XBOX_X = 0;
+
     private XboxController xbox;
 
     public OI() {
