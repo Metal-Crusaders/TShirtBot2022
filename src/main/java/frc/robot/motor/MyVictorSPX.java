@@ -4,7 +4,7 @@ import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
 
-public class VictorSPX extends WPI_VictorSPX {
+public class MyVictorSPX extends WPI_VictorSPX {
 
     static class Filter {
         private double sensitivity;
@@ -27,21 +27,21 @@ public class VictorSPX extends WPI_VictorSPX {
         }
     }
 
-    private static final double DEFUALT_PERCENT_FILTER = 1.0;
+    private static final double DEFAULT_PERCENT_FILTER = 1.0;
     private Filter percentOutputFilter;
 
     private static final int TIMEOUT_MS = 30;
 
-    private VictorSPX brownoutFollower = null;
+    private MyVictorSPX brownoutFollower = null;
     private boolean brownout = false;
 
     /**
      * Constructor
      */
-    public VictorSPX(int channel, boolean reversed) {
+    public MyVictorSPX(int channel, boolean reversed) {
         super(channel);
         super.setInverted(reversed);
-        percentOutputFilter = new Filter(DEFUALT_PERCENT_FILTER);
+        percentOutputFilter = new Filter(DEFAULT_PERCENT_FILTER);
     }
     public void set(double speed) {
         if (speed > 1) speed = 1;

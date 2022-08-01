@@ -9,16 +9,17 @@ import edu.wpi.first.wpilibj.PneumaticsModuleType;
 import edu.wpi.first.wpilibj.Solenoid;
 import frc.robot.commands.DriveTeleop;
 import frc.robot.commands.ShootTeleop;
-import frc.robot.commands.TiltTeleop;
+import frc.robot.commands.TiltDownTeleop;
+import frc.robot.commands.TiltUpTeleop;
 import frc.robot.sensors.CustomButton;
-import frc.robot.motor.VictorSPX;
+import frc.robot.motor.MyVictorSPX;
 import frc.robot.subsystems.TankDrive;
 import frc.robot.subsystems.TiltSystem;
 
 public class RobotContainer {
 
     //Motors
-    public VictorSPX leftFront, leftRear, rightFront, rightRear;
+    public MyVictorSPX leftFront, leftRear, rightFront, rightRear;
 
     //Pneumatics
     public Solenoid tshirtSolenoid;
@@ -29,7 +30,8 @@ public class RobotContainer {
     //OI
     public OI oi;
     public CustomButton shootBtn;
-    public CustomButton tiltBtn;
+    public CustomButton tiltUpBtn;
+    public CustomButton tiltDownBtn;
 
     //Subsystems
     public TankDrive drive;
@@ -37,15 +39,16 @@ public class RobotContainer {
     //Commands
     public DriveTeleop driveTeleop;
     public ShootTeleop shootTeleop;
-    public TiltTeleop tiltTeleop;
+    public TiltUpTeleop tiltUpTeleop;
+    public TiltDownTeleop tiltDownTeleop;
 
     public RobotContainer() {
 
         //Drivetrain
-        leftFront = new VictorSPX(RobotMap.leftFront, RobotMap.leftFrontReverse);
-        leftRear = new VictorSPX(RobotMap.leftRear, RobotMap.leftRearReverse);
-        rightFront = new VictorSPX(RobotMap.rightFront, RobotMap.rightFrontReverse);
-        rightRear = new VictorSPX(RobotMap.rightRear, RobotMap.rightRearReverse);
+        leftFront = new MyVictorSPX(RobotMap.leftFront, RobotMap.leftFrontReverse);
+        leftRear = new MyVictorSPX(RobotMap.leftRear, RobotMap.leftRearReverse);
+        rightFront = new MyVictorSPX(RobotMap.rightFront, RobotMap.rightFrontReverse);
+        rightRear = new MyVictorSPX(RobotMap.rightRear, RobotMap.rightRearReverse);
 
         leftRear.follow(leftFront);
         rightRear.follow(rightFront);
@@ -62,18 +65,22 @@ public class RobotContainer {
         //OI
         oi = new OI();
         shootBtn = new CustomButton(oi.getXbox(), OI.XBOX_A);
-        tiltBtn = new CustomButton(oi.getXbox(), OI.XBOX_X);
+        tiltUpBtn = new CustomButton(oi.getXbox(), OI.XBOX_X);
+        tiltDownBtn = new CustomButton(oi.getXbox(), OI.XBOX_Y);
 
         //Commands
         driveTeleop = new DriveTeleop(drive, oi.getXboxLeftTrigger(), oi.getXboxRightTrigger(), oi.getXboxLeftX());
         shootTeleop = new ShootTeleop(tshirtSolenoid);
-        tiltTeleop = new TiltTeleop(tiltSystem, tiltBtn.isHeld());
+        tiltUpTeleop = new TiltUpTeleop(tiltSystem);
+        tiltDownTeleop = new TiltDownTeleop(tiltSystem);
 
         configureButtonBindings();
     }
 
     private void configureButtonBindings() {
         shootBtn.toggleWhenPressed(shootTeleop);
+        tiltUpBtn.toggleWhenPressed(tiltUpTeleop);
+        tiltDownBtn.toggleWhenPressed(tiltDownTeleop);
     }
 
     public Command getAutonomousCommand() {

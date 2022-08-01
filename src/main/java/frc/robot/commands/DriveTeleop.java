@@ -1,5 +1,6 @@
 package frc.robot.commands;
 
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.TankDrive;
 
@@ -27,6 +28,17 @@ public class DriveTeleop extends CommandBase {
 //        steeringInput = steeringInput > -0.25 && steeringInput < 0.25 ? 0 : steeringInput;
         throttle = rightInput - leftInput;
         drive.set(throttle + steeringInput, throttle - steeringInput);
+        if (throttle != 0) {
+            SmartDashboard.putNumber("Driving?", 1);
+        } else {
+            SmartDashboard.putNumber("Driving?", 0);
+        }
+//        //SmartDashboard
+//        SmartDashboard.putNumber("Speed of LeftFront: ", leftFront.getPercentSpeed());
+//        SmartDashboard.putNumber("Speed of LeftRear: ", m_robotContainer.leftRear.getPercentSpeed());
+//        SmartDashboard.putNumber("Speed of RightFront: ", m_robotContainer.rightFront.getPercentSpeed());
+//        SmartDashboard.putNumber("Speed of RightRear: ", m_robotContainer.rightRear.getPercentSpeed());
+
     }
 
     @Override
