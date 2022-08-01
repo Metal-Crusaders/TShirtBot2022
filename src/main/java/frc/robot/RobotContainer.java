@@ -74,6 +74,7 @@ public class RobotContainer {
         tiltUpTeleop = new TiltUpTeleop(tiltSystem);
         tiltDownTeleop = new TiltDownTeleop(tiltSystem);
 
+//        drive.setDefaultCommand(driveTeleop); # Uncomment this if the RobotInit stuff doesn't work
         configureButtonBindings();
     }
 
