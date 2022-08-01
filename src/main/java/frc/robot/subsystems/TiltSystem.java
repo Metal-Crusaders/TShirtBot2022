@@ -16,4 +16,20 @@ public class TiltSystem extends SubsystemBase{
         this.rightSolenoid.set(on);
     }
 
+    public Solenoid getLeftSolenoid() {
+        return this.leftSolenoid;
+    }
+
+    public Solenoid getRightSolenoid() {
+        return this.rightSolenoid;
+    }
+
+    public boolean leftOn() {
+        return this.leftSolenoid.get();
+    }
+
+    public boolean rightOn() {
+        return this.rightSolenoid.get();
+    }
+
 }
