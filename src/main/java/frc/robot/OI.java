@@ -5,6 +5,7 @@ import edu.wpi.first.wpilibj.XboxController;
 public class OI {
 
     public static int XBOX_A = 1;
+    public static int XBOX_B = 2;
     public static int XBOX_X = 3;
     public static int XBOX_Y = 4;
 

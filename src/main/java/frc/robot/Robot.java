@@ -29,8 +29,10 @@ public class Robot extends TimedRobot {
         // Instantiate our RobotContainer.  This will perform all our button bindings, and put our
         // autonomous chooser on the dashboard.
         m_robotContainer = new RobotContainer();
-        CommandScheduler.getInstance().setDefaultCommand(m_robotContainer.drive, m_robotContainer.driveTeleop);
-        // Comment above if not working, and try uncommenting the line in robotContainer
+        m_robotContainer.tshirtSolenoid.set(false);
+        m_robotContainer.tiltLeftSolenoid.set(false);
+        m_robotContainer.tiltRightSolenoid.set(false);
+//        CommandScheduler.getInstance().setDefaultCommand(m_robotContainer.drive, m_robotContainer.driveTeleop);
 
     }
 
@@ -90,9 +92,6 @@ public class Robot extends TimedRobot {
         if (m_autonomousCommand != null) {
             m_autonomousCommand.cancel();
         }
-        m_robotContainer.tshirtSolenoid.set(false);
-        m_robotContainer.tiltLeftSolenoid.set(false);
-        m_robotContainer.tiltRightSolenoid.set(false);
         m_robotContainer.drive.brake();
 
     }
@@ -107,6 +106,7 @@ public class Robot extends TimedRobot {
         SmartDashboard.putNumber("Speed of LeftRear: ", m_robotContainer.leftRear.getPercentSpeed());
         SmartDashboard.putNumber("Speed of RightFront: ", m_robotContainer.rightFront.getPercentSpeed());
         SmartDashboard.putNumber("Speed of RightRear: ", m_robotContainer.rightRear.getPercentSpeed());
+
     }
 
     @Override

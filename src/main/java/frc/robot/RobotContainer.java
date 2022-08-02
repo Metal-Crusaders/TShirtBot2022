@@ -7,10 +7,7 @@ package frc.robot;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj.PneumaticsModuleType;
 import edu.wpi.first.wpilibj.Solenoid;
-import frc.robot.commands.DriveTeleop;
-import frc.robot.commands.ShootTeleop;
-import frc.robot.commands.TiltDownTeleop;
-import frc.robot.commands.TiltUpTeleop;
+import frc.robot.commands.*;
 import frc.robot.sensors.CustomButton;
 import frc.robot.motor.MyVictorSPX;
 import frc.robot.subsystems.TankDrive;
@@ -29,6 +26,7 @@ public class RobotContainer {
 
     //OI
     public OI oi;
+    public CustomButton driveRegBtn;
     public CustomButton shootBtn;
     public CustomButton tiltUpBtn;
     public CustomButton tiltDownBtn;
@@ -37,6 +35,7 @@ public class RobotContainer {
     public TankDrive drive;
 
     //Commands
+    public RegularDrive regDrive;
     public DriveTeleop driveTeleop;
     public ShootTeleop shootTeleop;
     public TiltUpTeleop tiltUpTeleop;
@@ -64,21 +63,25 @@ public class RobotContainer {
 
         //OI
         oi = new OI();
+        driveRegBtn = new CustomButton(oi.getXbox(), OI.XBOX_B);
         shootBtn = new CustomButton(oi.getXbox(), OI.XBOX_A);
         tiltUpBtn = new CustomButton(oi.getXbox(), OI.XBOX_X);
         tiltDownBtn = new CustomButton(oi.getXbox(), OI.XBOX_Y);
 
         //Commands
+        regDrive = new RegularDrive(drive);
         driveTeleop = new DriveTeleop(drive, oi.getXboxLeftTrigger(), oi.getXboxRightTrigger(), oi.getXboxLeftX());
         shootTeleop = new ShootTeleop(tshirtSolenoid);
         tiltUpTeleop = new TiltUpTeleop(tiltSystem);
         tiltDownTeleop = new TiltDownTeleop(tiltSystem);
 
-//        drive.setDefaultCommand(driveTeleop); # Uncomment this if the RobotInit stuff doesn't work
+//        drive.setDefaultCommand(driveTeleop);
+
         configureButtonBindings();
     }
 
     private void configureButtonBindings() {
+        driveRegBtn.toggleWhenPressed(regDrive);
         shootBtn.toggleWhenPressed(shootTeleop);
         tiltUpBtn.toggleWhenPressed(tiltUpTeleop);
         tiltDownBtn.toggleWhenPressed(tiltDownTeleop);
