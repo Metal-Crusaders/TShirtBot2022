@@ -19,7 +19,8 @@ public class RobotMap {
 
     // Pneumatics
     public static final int PCM = 5;
-    public static final int tShirtSolenoid = 5;
+    public static final int tShirtSolenoidA = 5;
+    public static final int tShirtSolenoidB = 5; // TODO need to change this
     public static final int tiltLeftSolenoid = 6;
     public static final int tiltRightSolenoid = 7;
 

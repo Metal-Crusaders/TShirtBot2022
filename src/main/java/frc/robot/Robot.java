@@ -29,7 +29,8 @@ public class Robot extends TimedRobot {
         // Instantiate our RobotContainer.  This will perform all our button bindings, and put our
         // autonomous chooser on the dashboard.
         m_robotContainer = new RobotContainer();
-        m_robotContainer.tshirtSolenoid.set(false);
+        m_robotContainer.tshirtSolenoidA.set(false);
+        m_robotContainer.tshirtSolenoidB.set(false);
         m_robotContainer.tiltLeftSolenoid.set(false);
         m_robotContainer.tiltRightSolenoid.set(false);
         CommandScheduler.getInstance().setDefaultCommand(m_robotContainer.drive, m_robotContainer.driveTeleop);

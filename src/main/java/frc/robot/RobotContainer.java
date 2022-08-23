@@ -19,15 +19,16 @@ public class RobotContainer {
     public MyVictorSPX leftFront, leftRear, rightFront, rightRear;
 
     //Pneumatics
-    public Solenoid tshirtSolenoid;
+    public Solenoid tshirtSolenoidA;
+    public Solenoid tshirtSolenoidB;
     public Solenoid tiltLeftSolenoid;
     public Solenoid tiltRightSolenoid;
     public TiltSystem tiltSystem;
 
     //OI
     public OI oi;
-    public CustomButton driveRegBtn;
-    public CustomButton shootBtn;
+    public CustomButton shootABtn;
+    public CustomButton shootBBtn;
     public CustomButton tiltUpBtn;
     public CustomButton tiltDownBtn;
 
@@ -35,9 +36,9 @@ public class RobotContainer {
     public TankDrive drive;
 
     //Commands
-    public RegularDrive regDrive;
     public DriveTeleop driveTeleop;
-    public ShootTeleop shootTeleop;
+    public ShootTeleop shootTeleopA;
+    public ShootTeleop shootTeleopB;
     public TiltUpTeleop tiltUpTeleop;
     public TiltDownTeleop tiltDownTeleop;
 
@@ -55,7 +56,8 @@ public class RobotContainer {
         drive = new TankDrive(leftFront, rightFront);
 
         //Pneumatics / Shooter
-        tshirtSolenoid = new Solenoid(RobotMap.PCM, PneumaticsModuleType.CTREPCM, RobotMap.tShirtSolenoid);
+        tshirtSolenoidA = new Solenoid(RobotMap.PCM, PneumaticsModuleType.CTREPCM, RobotMap.tShirtSolenoidA);
+        tshirtSolenoidB = new Solenoid(RobotMap.PCM, PneumaticsModuleType.CTREPCM, RobotMap.tShirtSolenoidB);
         tiltLeftSolenoid = new Solenoid(RobotMap.PCM, PneumaticsModuleType.CTREPCM, RobotMap.tiltLeftSolenoid);
         tiltRightSolenoid = new Solenoid(RobotMap.PCM, PneumaticsModuleType.CTREPCM, RobotMap.tiltRightSolenoid);
 
@@ -63,26 +65,24 @@ public class RobotContainer {
 
         //OI
         oi = new OI();
-        driveRegBtn = new CustomButton(oi.getXbox(), OI.XBOX_B);
-        shootBtn = new CustomButton(oi.getXbox(), OI.XBOX_A);
+        shootABtn = new CustomButton(oi.getXbox(), OI.XBOX_A);
+        shootBBtn = new CustomButton(oi.getXbox(), OI.XBOX_B);
         tiltUpBtn = new CustomButton(oi.getXbox(), OI.XBOX_X);
         tiltDownBtn = new CustomButton(oi.getXbox(), OI.XBOX_Y);
 
         //Commands
-        regDrive = new RegularDrive(drive);
         driveTeleop = new DriveTeleop(drive, oi::getXboxLeftTrigger, oi::getXboxRightTrigger, oi::getXboxLeftX);
-        shootTeleop = new ShootTeleop(tshirtSolenoid);
+        shootTeleopA = new ShootTeleop(tshirtSolenoidA);
+        shootTeleopB = new ShootTeleop(tshirtSolenoidB);
         tiltUpTeleop = new TiltUpTeleop(tiltSystem);
         tiltDownTeleop = new TiltDownTeleop(tiltSystem);
-
-//        drive.setDefaultCommand(driveTeleop);
 
         configureButtonBindings();
     }
 
     private void configureButtonBindings() {
-//        driveRegBtn.toggleWhenPressed(regDrive);
-        shootBtn.toggleWhenPressed(shootTeleop);
+        shootABtn.toggleWhenPressed(shootTeleopA);
+        shootBBtn.toggleWhenPressed(shootTeleopB);
         tiltUpBtn.toggleWhenPressed(tiltUpTeleop);
         tiltDownBtn.toggleWhenPressed(tiltDownTeleop);
     }

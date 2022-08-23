@@ -15,7 +15,7 @@ public class DriveTeleop extends CommandBase {
 
     private final TankDrive driveTrain;
 
-    private final double DEADBAND = 0.2;
+    private final double DEADBAND = 0.12;
 
     public DriveTeleop(TankDrive driveTrain, DoubleSupplier leftInput, DoubleSupplier rightInput, DoubleSupplier steeringInput) {
 
