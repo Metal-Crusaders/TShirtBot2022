@@ -9,6 +9,8 @@ public class OI {
     public static int XBOX_X = 3;
     public static int XBOX_Y = 4;
 
+    private double DEADBAND = 0.07;
+
     private XboxController xbox;
 
     public OI() {
@@ -20,7 +22,8 @@ public class OI {
     }
 
     public double getXboxLeftX() {
-        return -this.xbox.getLeftX();
+//        return ((((-1 * this.xbox.getLeftX()) >= (-1 * DEADBAND)) || ((-1 * this.xbox.getLeftX()) <= DEADBAND)) ? 0.0 : (-1 * this.xbox.getLeftX()));
+        return (-this.xbox.getLeftX());
     }
 
     public double getXboxRightY() {

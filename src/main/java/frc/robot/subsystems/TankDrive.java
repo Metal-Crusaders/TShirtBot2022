@@ -36,4 +36,13 @@ public class TankDrive extends SubsystemBase {
         this.left.setReversed(left);
         this.right.setReversed(right);
     }
+
+    public MyVictorSPX getLeft() {
+        return left;
+    }
+
+    public MyVictorSPX getRight() {
+        return right;
+    }
+
 }

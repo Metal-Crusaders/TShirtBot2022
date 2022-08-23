@@ -12,10 +12,10 @@ public class RobotMap {
     public static final boolean leftRearReverse = false;
 
     public static final int rightFront = 3;
-    public static final boolean rightFrontReverse = false;
+    public static final boolean rightFrontReverse = true;
 
     public static final int rightRear = 2;
-    public static final boolean rightRearReverse = false;
+    public static final boolean rightRearReverse = true;
 
     // Pneumatics
     public static final int PCM = 5;

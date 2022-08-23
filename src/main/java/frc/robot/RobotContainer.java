@@ -70,7 +70,7 @@ public class RobotContainer {
 
         //Commands
         regDrive = new RegularDrive(drive);
-        driveTeleop = new DriveTeleop(drive, oi.getXboxLeftTrigger(), oi.getXboxRightTrigger(), oi.getXboxLeftX());
+        driveTeleop = new DriveTeleop(drive, oi::getXboxLeftTrigger, oi::getXboxRightTrigger, oi::getXboxLeftX);
         shootTeleop = new ShootTeleop(tshirtSolenoid);
         tiltUpTeleop = new TiltUpTeleop(tiltSystem);
         tiltDownTeleop = new TiltDownTeleop(tiltSystem);
@@ -81,7 +81,7 @@ public class RobotContainer {
     }
 
     private void configureButtonBindings() {
-        driveRegBtn.toggleWhenPressed(regDrive);
+//        driveRegBtn.toggleWhenPressed(regDrive);
         shootBtn.toggleWhenPressed(shootTeleop);
         tiltUpBtn.toggleWhenPressed(tiltUpTeleop);
         tiltDownBtn.toggleWhenPressed(tiltDownTeleop);

@@ -32,7 +32,7 @@ public class Robot extends TimedRobot {
         m_robotContainer.tshirtSolenoid.set(false);
         m_robotContainer.tiltLeftSolenoid.set(false);
         m_robotContainer.tiltRightSolenoid.set(false);
-//        CommandScheduler.getInstance().setDefaultCommand(m_robotContainer.drive, m_robotContainer.driveTeleop);
+        CommandScheduler.getInstance().setDefaultCommand(m_robotContainer.drive, m_robotContainer.driveTeleop);
 
     }
 

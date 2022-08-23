@@ -4,18 +4,27 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.TankDrive;
 
+import java.util.function.DoubleSupplier;
+
 public class DriveTeleop extends CommandBase {
-    private final TankDrive drive;
-    private double leftInput, rightInput, steeringInput, throttle;
 
-    private final double SENSITIVITY = 1;
 
-    public DriveTeleop(TankDrive drive, double leftInput, double rightInput, double steeringInput) {
-        this.drive = drive;
+    private boolean filterEnabled;
+
+    private DoubleSupplier leftInput, rightInput, steeringInput;
+
+    private final TankDrive driveTrain;
+
+    private final double DEADBAND = 0.2;
+
+    public DriveTeleop(TankDrive driveTrain, DoubleSupplier leftInput, DoubleSupplier rightInput, DoubleSupplier steeringInput) {
+
+        this.driveTrain = driveTrain;
         this.leftInput = leftInput;
         this.rightInput = rightInput;
         this.steeringInput = steeringInput;
-        addRequirements(drive);
+
+        addRequirements(driveTrain);
     }
 
     @Override
@@ -24,30 +33,30 @@ public class DriveTeleop extends CommandBase {
 
     @Override
     public void execute() {
-        // Uncomment for drift calibration
-//        steeringInput = steeringInput > -0.25 && steeringInput < 0.25 ? 0 : steeringInput;
-        throttle = rightInput - leftInput;
-        drive.set(throttle + steeringInput, throttle - steeringInput);
-        if (throttle != 0) {
-            SmartDashboard.putNumber("Driving?", 1);
-        } else {
-            SmartDashboard.putNumber("Driving?", 0);
+        double speedSensitivity = 1;
+
+        double steering = steeringInput.getAsDouble();
+        if (steering > -DEADBAND && steering < DEADBAND) {
+            steering = 0;
         }
-//        //SmartDashboard
-//        SmartDashboard.putNumber("Speed of LeftFront: ", leftFront.getPercentSpeed());
-//        SmartDashboard.putNumber("Speed of LeftRear: ", m_robotContainer.leftRear.getPercentSpeed());
-//        SmartDashboard.putNumber("Speed of RightFront: ", m_robotContainer.rightFront.getPercentSpeed());
-//        SmartDashboard.putNumber("Speed of RightRear: ", m_robotContainer.rightRear.getPercentSpeed());
+        double throttle = rightInput.getAsDouble() - leftInput.getAsDouble();
+        double rpower =  throttle * (1 + steering);
+        double lpower = throttle * (1 - steering);
 
-    }
-
-    @Override
-    public void end(boolean interrupted) {
-        drive.stop();
+        driveTrain.set(lpower*speedSensitivity, rpower*speedSensitivity);
+        SmartDashboard.putNumber("steering", steering);
+        SmartDashboard.putNumber("throttle", rightInput.getAsDouble() - leftInput.getAsDouble());
     }
 
     @Override
     public boolean isFinished() {
         return false;
     }
+
+    @Override
+    public void end(boolean interrupted) {
+        this.driveTrain.stop();
+    }
+
+
 }
