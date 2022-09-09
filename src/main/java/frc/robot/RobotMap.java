@@ -17,11 +17,11 @@ public class RobotMap {
     public static final int rightRear = 2;
     public static final boolean rightRearReverse = true;
 
+    public static final int actuatorPWMId = 5;
+
     // Pneumatics
     public static final int PCM = 5;
     public static final int tShirtSolenoidA = 5;
-    public static final int tShirtSolenoidB = 5; // TODO need to change this
-    public static final int tiltLeftSolenoid = 6;
-    public static final int tiltRightSolenoid = 7;
+    public static final int tShirtSolenoidB = 4; // TODO need to change this
 
 }

@@ -31,9 +31,8 @@ public class Robot extends TimedRobot {
         m_robotContainer = new RobotContainer();
         m_robotContainer.tshirtSolenoidA.set(false);
         m_robotContainer.tshirtSolenoidB.set(false);
-        m_robotContainer.tiltLeftSolenoid.set(false);
-        m_robotContainer.tiltRightSolenoid.set(false);
         CommandScheduler.getInstance().setDefaultCommand(m_robotContainer.drive, m_robotContainer.driveTeleop);
+        CommandScheduler.getInstance().setDefaultCommand(m_robotContainer.actuator, m_robotContainer.tiltTeleop);
 
     }
 
@@ -107,6 +106,7 @@ public class Robot extends TimedRobot {
         SmartDashboard.putNumber("Speed of LeftRear: ", m_robotContainer.leftRear.getPercentSpeed());
         SmartDashboard.putNumber("Speed of RightFront: ", m_robotContainer.rightFront.getPercentSpeed());
         SmartDashboard.putNumber("Speed of RightRear: ", m_robotContainer.rightRear.getPercentSpeed());
+//        m_robotContainer.actuator.set(1);
 
     }
 
