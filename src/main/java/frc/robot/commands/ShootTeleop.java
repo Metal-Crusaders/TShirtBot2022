@@ -37,6 +37,6 @@ public class ShootTeleop extends CommandBase {
 
     @Override
     public boolean isFinished() {
-        return false;
+        return (timer.advanceIfElapsed(TIME));
     }
 }
